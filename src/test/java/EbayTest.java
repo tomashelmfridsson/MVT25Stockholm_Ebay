@@ -11,11 +11,19 @@ public class EbayTest {
     public void testVanGoghArt(){
         WebDriver driver = new ChromeDriver();
         driver.get("https://www.ebay.com");
-
         Select select = new Select(driver.findElement(By.cssSelector("select#gh-cat")));
         select.selectByIndex(2);
         WebElement searchElement =  driver.findElement(By.cssSelector("input#gh-ac"));
         searchElement.sendKeys("van Gogh");
         searchElement.submit();
+    }
+
+    @Test
+    public void testVanGoghArtWithPOM(){
+        WebDriver driver = new ChromeDriver();
+        EbayHomePageObjectModel ebayHomePage = new EbayHomePageObjectModel(driver);
+        ebayHomePage.open();
+        ebayHomePage.selectCategoryByText("Art");
+        ebayHomePage.searchFor("van Gogh");
     }
 }
